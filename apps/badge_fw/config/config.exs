@@ -46,3 +46,5 @@ config :badge_settings, BadgeSettings.Endpoint,
   server: true,
   pubsub: [name: BadgeSettings.PubSub,
            adapter: Phoenix.PubSub.PG2]
+
+import_config "secret*.exs" # ignore this. It's for Paul's convenience
