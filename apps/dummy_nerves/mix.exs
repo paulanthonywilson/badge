@@ -1,8 +1,8 @@
-defmodule BadgeLib.Mixfile do
+defmodule DummyNerves.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :badge_lib,
+    [app: :dummy_nerves,
      version: "0.1.0",
      build_path: "../../_build",
      config_path: "../../config/config.exs",
@@ -18,15 +18,7 @@ defmodule BadgeLib.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: applications(Mix.env)]
-  end
-
-
-  def applications(:prod), do: [:firmata | general_applications]
-  def applications(_), do: general_applications
-
-  def general_applications do
-    [:logger, :oauth, :extwitter, :poison]
+    [applications: [:logger]]
   end
 
   # Dependencies can be Hex packages:
@@ -43,10 +35,6 @@ defmodule BadgeLib.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:firmata, github: "mobileoverlord/firmata", only: :prod},
-     {:oauth, github: "tim/erlang-oauth"},
-     {:dummy_nerves, in_umbrella: true, only: [:dev, :test]},
-     {:extwitter, "~> 0.6"},
-     {:poison, "~> 2.2"}]
+    []
   end
 end
