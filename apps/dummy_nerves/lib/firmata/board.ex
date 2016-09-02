@@ -2,6 +2,13 @@ defmodule Firmata.Board do
   use GenServer
   require Logger
 
+  @moduledoc """
+  Fake version of [Firmata.Board](https://github.com/mobileoverlord/firmata/blob/master/lib/firmata/board.ex).
+
+  Supplies methods called in the Badge project, and also logs the calls for testing.
+
+  Inspect the log with `write_log`
+  """
 
   defstruct port: nil, serial_opts: nil, write_log: []
 
