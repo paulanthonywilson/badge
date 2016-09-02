@@ -18,6 +18,7 @@ defmodule BadgeLib.Firmata do
     port =  opts[:port] || "ttyS0"
     speed = opts[:speed] || 57600
     serial_opts = [speed: speed]
+
     GenServer.start_link(__MODULE__, [port, serial_opts], name: __MODULE__)
   end
 
@@ -35,6 +36,10 @@ defmodule BadgeLib.Firmata do
 
   def clear() do
     GenServer.call(__MODULE__, :clear)
+  end
+
+  def board() do
+    GenServer.call(__MODULE__, :board)
   end
 
   def init([port, serial_opts]) do
@@ -63,6 +68,10 @@ defmodule BadgeLib.Firmata do
   def handle_call(:clear, _from, s) do
     resp = Board.sysex_write(s.board, @display_clear, "")
     {:reply, {:ok, resp}, s}
+  end
+
+  def handle_call(:board, _from, state = %{board: board}) do
+    {:reply, board, state}
   end
 
   def handle_info(:clear_display, s) do
