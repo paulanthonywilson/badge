@@ -17,6 +17,10 @@ defmodule Firmata.Board do
     GenServer.call(pid, {:write, :digial_write, {arg1, arg2}})
   end
 
+  def set_pin_mode(pid, pin, mode) do
+    GenServer.call(pid, {:write, :pin_mode, {pin, mode}})
+  end
+
 
   def write_log(pid) do
     GenServer.call(pid, :write_log)
